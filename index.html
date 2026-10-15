@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="5 деңгейлі тригонометриялық теңдеулер тренажері: 40 есеп, шешу жолы және қатемен жұмыс.">
+<meta property="og:title" content="Тригонометрия тренажері">
+<meta property="og:description" content="5 деңгей, 40 есеп. Теңдеуді шеш, дұрыс жауапты таңда.">
+<meta property="og:type" content="website">
+<title>Тригонометрия тренажері</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600;800&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: graph-paper page, one narrow column; navy ink, coral = sin, mustard = cos */
+:root{--bg:#eef2f9;--grid:#dfe6f2;--card:#ffffff;--ink:#172340;--mut:#5d6884;--acc:#e4572e;--accT:#ffffff;--sec:#e09f1f;--soft:#f6f8fc;--ok:#1f8a5b;--okbg:#e2f4ea;--bad:#d1432b;--badbg:#fde8e3;--line:#d4dbe8;
+--fd:"Montserrat Alternates","Noto Sans",system-ui,sans-serif;--fb:"Noto Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a2e;--grid:#18233b;--card:#1a2542;--ink:#eaf0ff;--mut:#9eabc9;--acc:#ff7a59;--accT:#1a0d08;--sec:#f6c453;--soft:#141e36;--ok:#5fd39a;--okbg:#14301f;--bad:#ff8a70;--badbg:#3a1a14;--line:#2c3a5c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111a2e;--grid:#18233b;--card:#1a2542;--ink:#eaf0ff;--mut:#9eabc9;--acc:#ff7a59;--accT:#1a0d08;--sec:#f6c453;--soft:#141e36;--ok:#5fd39a;--okbg:#14301f;--bad:#ff8a70;--badbg:#3a1a14;--line:#2c3a5c;color-scheme:dark}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:var(--fb);font-size:15px;line-height:1.5;min-height:100vh;
+background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+main{max-width:600px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-family:var(--fd);font-size:1.6rem;line-height:1.15;margin:0 0 6px;font-weight:800;text-wrap:balance}
+h2{font-family:var(--fd);font-size:1.05rem;margin:22px 0 10px;font-weight:600}
+p{margin:0 0 14px}
+.mut{color:var(--mut)}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px 8px;margin-bottom:16px}
+.hero p{max-width:60ch}
+.hero svg{display:block;width:100%;height:auto;margin-top:4px}
+.hero text,.ill text{font-family:var(--fb);font-size:13px;fill:var(--mut)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+button{font:inherit;cursor:pointer;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);padding:12px 14px;text-align:left;width:100%}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.lv{display:flex;flex-direction:column;gap:10px}
+.lv button{padding:12px 14px;display:grid;grid-template-columns:52px 1fr auto;gap:2px 14px;align-items:center;transition:border-color .15s,transform .15s}
+.lv button:hover{border-color:var(--acc);transform:translateY(-1px)}
+.lv .ic{grid-row:1/3;width:52px;height:52px;border-radius:14px;background:var(--soft);display:grid;place-items:center}
+.lv b{font-size:1rem;min-width:0}
+.lv .d{font-size:.86rem;color:var(--mut);grid-column:2;min-width:0}
+.lv em{font-style:normal;font-size:.78rem;color:var(--mut);grid-row:1/3;grid-column:3;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dots{letter-spacing:2px;color:var(--acc);font-size:.7rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.9rem;color:var(--mut);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.top .who{display:flex;align-items:center;gap:10px;min-width:0}
+.top .ic{width:36px;height:36px;border-radius:10px;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;flex:none}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:14px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--sec),var(--acc));border-radius:4px;transition:width .3s}
+.q{font-size:1.35rem;font-weight:700;margin:4px 0 16px;text-align:center;padding:18px 10px;border-radius:14px;background:var(--soft);border:1px dashed var(--line);overflow-wrap:anywhere}
+.q small{display:block;font-size:.85rem;font-weight:400;color:var(--mut);margin-top:4px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{font-size:1.02rem;display:flex;gap:12px;align-items:center}
+.opt .k{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:.8rem;font-weight:700;color:var(--mut)}
+.opt:hover:not(:disabled){border-color:var(--acc)}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok);font-weight:600}
+.opt.ok .k{border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.opt.bad .k{border-color:var(--bad);color:var(--bad)}
+.opt:disabled{cursor:default}
+.fb{margin-top:14px;padding:12px 14px;border-radius:14px;background:var(--soft);font-size:.95rem;border-left:4px solid var(--sec)}
+.fb.r{border-left-color:var(--ok)}
+.fb strong{display:block;margin-bottom:2px}
+.next{margin-top:14px;background:var(--acc);color:var(--accT);border-color:var(--acc);text-align:center;font-weight:700}
+.res{text-align:center}
+.res svg{display:block;margin:0 auto}
+.big{font-family:var(--fd);font-size:2.6rem;font-weight:800;text-align:center;margin:4px 0;font-variant-numeric:tabular-nums}
+.row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.row button{text-align:center;flex:1 1 160px}
+.note{font-size:.85rem;color:var(--mut);margin-top:14px;text-align:center}
+.miss{display:flex;flex-direction:column;gap:10px}
+.miss div{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:12px;padding:10px 12px;font-size:.92rem}
+.miss b{display:block}
+@media (prefers-reduced-motion:reduce){.bar i,.lv button{transition:none}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+var LEVELS = {
+1: {name:"Аргументі күрделі теңдеулер", desc:"sin(kx + b) = a, ctg, arcsin", qs:[
+["cos(x + π/4) = 0","π/4 + πn",["−π/4 + πn","π/4 + 2πn","3π/4 + 2πn"],"x + π/4 = π/2 + πn, сондықтан x = π/2 − π/4 + πn = π/4 + πn."],
+["sin(2x − π/3) = 0","π/6 + πn/2",["π/6 + πn","π/3 + πn/2","−π/6 + πn/2"],"2x − π/3 = πn ⇒ 2x = π/3 + πn ⇒ x = π/6 + πn/2. Периодты да 2-ге бөлуді ұмытпа."],
+["tg(x/2) = √3","2π/3 + 2πn",["2π/3 + πn","π/6 + πn","π/3 + 2πn"],"x/2 = π/3 + πn. Екі жағын 2-ге көбейтеміз: x = 2π/3 + 2πn."],
+["cos 3x = −1/2","±2π/9 + 2πn/3",["±π/9 + 2πn/3","±2π/9 + 2πn","±2π/3 + 2πn/3"],"arccos(−1/2) = π − π/3 = 2π/3. 3x = ±2π/3 + 2πn ⇒ x = ±2π/9 + 2πn/3."],
+["2sin(x/3) = −√3","(−1)ⁿ⁺¹·π + 3πn",["(−1)ⁿ·π + 3πn","(−1)ⁿ⁺¹·π/9 + πn/3","(−1)ⁿ⁺¹·π + πn"],"sin(x/3) = −√3/2 ⇒ x/3 = (−1)ⁿ⁺¹·π/3 + πn. 3-ке көбейтсек: x = (−1)ⁿ⁺¹·π + 3πn."],
+["ctg 2x = 1","π/8 + πn/2",["π/8 + πn","π/4 + πn/2","−π/8 + πn/2"],"2x = arcctg 1 + πn = π/4 + πn ⇒ x = π/8 + πn/2."],
+["√2·cos(x − π/4) = 1","2πn;  π/2 + 2πn",["πn;  π/2 + πn","π/2 + 2πn","±π/4 + 2πn"],"cos(x − π/4) = √2/2 ⇒ x − π/4 = ±π/4 + 2πn. «+» таңбасында x = π/2 + 2πn, «−» таңбасында x = 2πn."],
+["sin x = 1/3","(−1)ⁿ·arcsin(1/3) + πn",["±arcsin(1/3) + 2πn","(−1)ⁿ·arccos(1/3) + πn","arcsin(1/3) + 2πn"],"1/3 кестелік мән емес, сондықтан жауап arcsin арқылы жазылады: x = (−1)ⁿ·arcsin(1/3) + πn."]
+]},
+2: {name:"Квадрат теңдеуге келтіру", desc:"негізгі тепе-теңдік, cos 2x, бөгде түбірлер", qs:[
+["2cos²x + sin x − 1 = 0","π/2 + 2πn;  (−1)ⁿ⁺¹·π/6 + πn",["π/2 + 2πn;  (−1)ⁿ·π/6 + πn","−π/2 + 2πn;  (−1)ⁿ·π/6 + πn","π/2 + 2πn"],"cos²x = 1 − sin²x қоямыз: 2t² − t − 1 = 0, t = sin x. t = 1 немесе t = −1/2."],
+["6sin²x + 5cos x − 7 = 0","±π/3 + 2πn;  ±arccos(1/3) + 2πn",["±π/3 + 2πn","±π/6 + 2πn;  ±arccos(1/3) + 2πn","(−1)ⁿ·π/3 + πn;  (−1)ⁿ·arcsin(1/3) + πn"],"sin²x = 1 − cos²x: 6t² − 5t + 1 = 0, t = cos x. t = 1/2 немесе t = 1/3."],
+["cos 2x − 5sin x − 3 = 0","(−1)ⁿ⁺¹·π/6 + πn",["(−1)ⁿ·π/6 + πn","(−1)ⁿ⁺¹·π/6 + πn;  (−1)ⁿ⁺¹·arcsin 2 + πn","−π/6 + 2πn"],"cos 2x = 1 − 2sin²x: 2t² + 5t + 2 = 0, t = −1/2 немесе t = −2. Бірақ |sin x| ≤ 1, сондықтан t = −2 бөгде түбір."],
+["tg x + 3ctg x = 4","π/4 + πn;  arctg 3 + πn",["π/4 + πn;  arcctg 3 + πn","π/4 + 2πn;  arctg 3 + 2πn","−π/4 + πn;  −arctg 3 + πn"],"ctg x = 1/tg x: t + 3/t = 4 ⇒ t² − 4t + 3 = 0, t = 1 немесе t = 3."],
+["3tg²x − 2√3·tg x − 3 = 0","π/3 + πn;  −π/6 + πn",["π/3 + πn;  π/6 + πn","π/6 + πn;  −π/3 + πn","π/3 + 2πn;  −π/6 + 2πn"],"D = 12 + 36 = 48, t = (2√3 ± 4√3)/6. t = √3 немесе t = −√3/3."],
+["2sin²x + 3cos x = 0","±2π/3 + 2πn",["±π/3 + 2πn","±2π/3 + 2πn;  ±arccos 2 + 2πn","±2π/3 + πn"],"2 − 2cos²x + 3cos x = 0 ⇒ 2t² − 3t − 2 = 0, t = 2 немесе t = −1/2. cos x = 2 болмайды."],
+["cos 2x + 3cos x + 2 = 0","±2π/3 + 2πn;  π + 2πn",["±π/3 + 2πn;  π + 2πn","±2π/3 + 2πn","±2π/3 + 2πn;  2πn"],"cos 2x = 2cos²x − 1: 2t² + 3t + 1 = 0, t = −1/2 немесе t = −1."],
+["sin⁴x − cos⁴x = 1/2","±π/3 + πn",["±π/6 + πn","±π/3 + 2πn","±2π/3 + πn"],"Квадраттар айырмасы: (sin²x − cos²x)(sin²x + cos²x) = −cos 2x. Сонда cos 2x = −1/2, 2x = ±2π/3 + 2πn."]
+]},
+3: {name:"Көбейткіштерге жіктеу", desc:"қосындыны көбейтіндіге айналдыру, топтау", qs:[
+["sin 3x + sin x = 0","πn/2",["πn","π/4 + πn/2","πn/3"],"2sin 2x·cos x = 0. sin 2x = 0 ⇒ x = πn/2. cos x = 0 түбірлері осы жиынға кіреді."],
+["cos 5x = cos 3x","πn/4",["πn","π/8 + πn/4","πn/2"],"cos 5x − cos 3x = −2sin 4x·sin x = 0. sin 4x = 0 ⇒ x = πn/4, ал sin x = 0 түбірлері осыған кіреді."],
+["sin 2x = cos x","π/2 + πn;  (−1)ⁿ·π/6 + πn",["π/2 + πn;  (−1)ⁿ·π/3 + πn","π/2 + πn","πn;  (−1)ⁿ·π/6 + πn"],"2sin x·cos x − cos x = 0 ⇒ cos x·(2sin x − 1) = 0. Екі жаққа cos x-ке бөлуге болмайды: түбір жоғалады."],
+["sin x + sin 2x + sin 3x = 0","πn/2;  ±2π/3 + 2πn",["πn/2;  ±π/3 + 2πn","πn;  ±2π/3 + 2πn","πn/2"],"(sin x + sin 3x) + sin 2x = 2sin 2x·cos x + sin 2x = sin 2x·(2cos x + 1) = 0."],
+["cos x · cos 3x = cos 4x","πn/3",["πn","πn/3;  πn/2","π/6 + πn/3"],"cos x·cos 3x = (cos 2x + cos 4x)/2. Сонда cos 2x = cos 4x ⇒ −2sin 3x·sin x = 0 ⇒ sin 3x = 0."],
+["sin 2x + 2sin x = cos x + 1","π + 2πn;  (−1)ⁿ·π/6 + πn",["π + 2πn;  (−1)ⁿ⁺¹·π/6 + πn","2πn;  (−1)ⁿ·π/6 + πn","(−1)ⁿ·π/6 + πn"],"Топтаймыз: 2sin x·(cos x + 1) − (cos x + 1) = (cos x + 1)(2sin x − 1) = 0."],
+["sin²x + sin²2x = 1","π/2 + πn;  ±π/6 + πn",["π/2 + πn;  (−1)ⁿ·π/6 + πn","π/2 + πn;  ±π/3 + πn","±π/6 + πn"],"sin²2x = 1 − sin²x = cos²x ⇒ cos²x·(4sin²x − 1) = 0. sin x = ±1/2 ⇒ x = ±π/6 + πn."],
+["sin 5x − sin x = 0","πn/2;  π/6 + πn/3",["πn/2","π/6 + πn/3","πn;  π/6 + πn/3"],"Айырма формуласы: 2cos 3x·sin 2x = 0. sin 2x = 0 ⇒ πn/2; cos 3x = 0 ⇒ π/6 + πn/3."]
+]},
+4: {name:"Біртекті теңдеулер және қосымша бұрыш", desc:"a·sin²x + b·sin x·cos x + c·cos²x = 0; a·sin x + b·cos x = c", qs:[
+["sin²x − 3sin x·cos x + 2cos²x = 0","π/4 + πn;  arctg 2 + πn",["π/4 + πn;  arctg 3 + πn","π/4 + πn;  −arctg 2 + πn","π/4 + 2πn;  arctg 2 + 2πn"],"cos²x-қа бөлеміз (cos x = 0 түбір емес): tg²x − 3tg x + 2 = 0, tg x = 1 немесе tg x = 2."],
+["3sin²x + sin x·cos x − 2cos²x = 0","−π/4 + πn;  arctg(2/3) + πn",["π/4 + πn;  arctg(2/3) + πn","−π/4 + πn;  arctg(3/2) + πn","−π/4 + πn;  −arctg(2/3) + πn"],"3t² + t − 2 = 0, t = tg x. D = 25, t = 2/3 немесе t = −1."],
+["sin²x + sin 2x − 3cos²x = 0","π/4 + πn;  −arctg 3 + πn",["π/4 + πn;  arctg 3 + πn","−π/4 + πn;  arctg 3 + πn","π/4 + πn"],"sin 2x = 2sin x·cos x. cos²x-қа бөлсек: t² + 2t − 3 = 0, t = 1 немесе t = −3."],
+["3sin²x − 4sin x·cos x + 5cos²x = 2","π/4 + πn;  arctg 3 + πn",["π/4 + πn;  arctg 2 + πn","−π/4 + πn;  −arctg 3 + πn","∅"],"Оң жағы біртекті емес: 2 = 2sin²x + 2cos²x деп жазамыз. Сонда sin²x − 4sin x·cos x + 3cos²x = 0, tg x = 1 немесе 3."],
+["sin x − √3·cos x = 1","π/2 + 2πn;  7π/6 + 2πn",["π/2 + 2πn;  −π/6 + 2πn","π/6 + 2πn;  7π/6 + 2πn","π/2 + πn"],"2-ге бөлеміз: sin(x − π/3) = 1/2. x − π/3 = π/6 + 2πn немесе x − π/3 = 5π/6 + 2πn."],
+["√3·sin x + cos x = 2","π/3 + 2πn",["π/6 + 2πn","π/3 + πn","−π/3 + 2πn"],"2-ге бөлеміз: sin(x + π/6) = 1. Сонда x + π/6 = π/2 + 2πn."],
+["3sin x + 4cos x = 5","arctg(3/4) + 2πn",["arctg(4/3) + 2πn","arctg(3/4) + πn","±arctg(3/4) + 2πn"],"√(3² + 4²) = 5-ке бөлеміз: (3/5)sin x + (4/5)cos x = 1. Бұл тек sin x = 3/5, cos x = 4/5 болғанда орындалады, яғни tg x = 3/4 және x I ширекте."],
+["sin x + cos x = 2","∅",["π/4 + 2πn","2πn;  π/2 + 2πn","π/4 + πn"],"sin x + cos x = √2·sin(x + π/4) ≤ √2 < 2. Теңдеудің шешімі жоқ."]
+]},
+5: {name:"Олимпиадалық деңгей", desc:"мүмкін мәндер жиыны, аралықтағы түбірлер, бағалау әдісі", qs:[
+["sin 2x / (1 − cos x) = 0","π/2 + πn;  π + 2πn",["πn/2","π/2 + πn","π/2 + πn;  2πn"],"Алымы: sin 2x = 0 ⇒ x = πn/2. Бөлімі: cos x ≠ 1, яғни x ≠ 2πn. Қалғаны: π/2 + πn және π + 2πn."],
+["cos 2x / (cos x − sin x) = 0","−π/4 + πn",["π/4 + πn/2","π/4 + πn","±π/4 + πn"],"cos 2x = (cos x − sin x)(cos x + sin x). Бөлім нөл емес, сондықтан cos x + sin x = 0 ⇒ tg x = −1."],
+["tg x · (sin x − 1) = 0","πn",["πn;  π/2 + 2πn","π/2 + 2πn","πn/2"],"sin x = 1 болса, cos x = 0 және tg x анықталмаған. Сондықтан тек tg x = 0 ⇒ x = πn қалады."],
+["cos x · √(sin x) = 0","πn;  π/2 + 2πn",["πn;  π/2 + πn","π/2 + 2πn","πn"],"МЖС: sin x ≥ 0. sin x = 0 ⇒ πn. cos x = 0 ⇒ π/2 + πn, бірақ x = −π/2 + 2πn-де sin x = −1 < 0, ол алынбайды."],
+["sin x + sin 3x = 0,  x ∈ [0; π]","0;  π/2;  π",["0;  π","π/2","0;  π/4;  π/2;  3π/4;  π"],"2sin 2x·cos x = 0 ⇒ x = πn/2. [0; π] аралығына n = 0, 1, 2 түседі: 0, π/2, π."],
+["sin⁶x + cos⁶x = 1/4","π/4 + πn/2",["π/4 + πn","π/8 + πn/4","±π/4 + 2πn"],"sin⁶x + cos⁶x = 1 − 3sin²x·cos²x = 1 − (3/4)sin²2x. Сонда sin²2x = 1, 2x = π/2 + πn."],
+["sin x + cos x + sin x·cos x = 1","2πn;  π/2 + 2πn",["πn;  π/2 + πn","π/4 + 2πn","2πn"],"t = sin x + cos x десек, sin x·cos x = (t² − 1)/2. t² + 2t − 3 = 0 ⇒ t = 1 (t = −3 болмайды). Сонда √2·sin(x + π/4) = 1."],
+["sin x · cos 4x = 1","π/2 + 2πn",["±π/2 + 2πn","πn/2","∅"],"Бағалау: |sin x| ≤ 1, |cos 4x| ≤ 1. Көбейтінді 1-ге тек sin x = cos 4x = ±1 болғанда тең. sin x = 1 ⇒ x = π/2 + 2πn, cos 4x = 1 ✓. sin x = −1 ⇒ cos 4x = 1 ≠ −1 ✗."]
+]}
+};
+var DIFF = {1:"●○○○○",2:"●●○○○",3:"●●●○○",4:"●●●●○",5:"●●●●●"};
+var app = document.getElementById('app');
+var st = {}, raf = 0;
+var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+function lbl(o){return o==="∅"?"Шешімі жоқ":"x = "+o}
+function getBest(k){try{return +localStorage.getItem('trig5-best-'+k)||0}catch(e){return 0}}
+function setBest(k,v){try{if(v>getBest(k))localStorage.setItem('trig5-best-'+k,v)}catch(e){}}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function f(n){return Math.round(n*10)/10}
+
+/* ---------- суреттер ---------- */
+function wave(x0,x1,cy,amp,fn,turns){
+  var d='',N=80;for(var i=0;i<=N;i++){var t=i/N*2*Math.PI*turns;d+=(i?'L':'M')+f(x0+(x1-x0)*i/N)+' '+f(cy-amp*fn(t))}return d}
+function icon(k,sz){
+  sz=sz||34;var s='<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">';
+  if(k==1){s+='<line x1="3" y1="20" x2="37" y2="20" stroke="var(--line)" stroke-width="1.5"/><line x1="20" y1="3" x2="20" y2="37" stroke="var(--line)" stroke-width="1.5"/>'+
+    '<circle cx="20" cy="20" r="14" stroke="var(--ink)" stroke-width="2"/><path d="M27 20 A7 7 0 0 0 24.9 15.1" stroke="var(--sec)" stroke-width="2.5"/>'+
+    '<line x1="20" y1="20" x2="29.9" y2="10.1" stroke="var(--acc)" stroke-width="2.5"/><circle cx="29.9" cy="10.1" r="3" fill="var(--acc)" stroke="none"/>'}
+  if(k==2){s+='<line x1="3" y1="20" x2="37" y2="20" stroke="var(--line)" stroke-width="1.5"/><path d="M6 6 Q20 50 34 6" stroke="var(--acc)" stroke-width="2.5"/>'+
+    '<circle cx="11.5" cy="20" r="3" fill="var(--sec)" stroke="none"/><circle cx="28.5" cy="20" r="3" fill="var(--sec)" stroke="none"/>'}
+  if(k==3){s+='<line x1="3" y1="20" x2="37" y2="20" stroke="var(--line)" stroke-width="1.5"/>'+
+    '<path d="'+wave(4,36,20,10,Math.sin,1)+'" stroke="var(--acc)" stroke-width="2.5"/><path d="'+wave(4,36,20,10,Math.cos,1)+'" stroke="var(--sec)" stroke-width="2.5"/>'}
+  if(k==4){s+='<path d="M7 32 H33 V12.5 Z" stroke="var(--ink)" stroke-width="2"/><path d="M33 32 V12.5" stroke="var(--acc)" stroke-width="3"/><path d="M7 32 H33" stroke="var(--sec)" stroke-width="3"/>'+
+    '<path d="M15 32 A8 8 0 0 0 13.4 27.2" stroke="var(--acc)" stroke-width="2"/><path d="M29 32 V28 H33" stroke="var(--mut)" stroke-width="1.5"/>'}
+  if(k==5){var p='';for(var i=0;i<10;i++){var r=i%2?7:15,a=-Math.PI/2+i*Math.PI/5;p+=f(20+r*Math.cos(a))+','+f(21+r*Math.sin(a))+' '}
+    s+='<polygon points="'+p+'" fill="var(--sec)" stroke="var(--acc)" stroke-width="2"/>'}
+  return s+'</svg>';
+}
+function heroSvg(){
+  var cx=100,cy=100,R=72,x0=214,x1=524;
+  var s='<svg viewBox="0 0 540 200" role="img" aria-label="Бірлік шеңбер және синусоида">'+
+  '<line x1="16" y1="100" x2="530" y2="100" stroke="var(--line)" stroke-width="1.5"/><line x1="100" y1="16" x2="100" y2="184" stroke="var(--line)" stroke-width="1.5"/>'+
+  '<circle cx="100" cy="100" r="72" fill="none" stroke="var(--ink)" stroke-width="2.5"/>'+
+  '<path d="'+wave(x0,x1,cy,R,Math.cos,1)+'" fill="none" stroke="var(--sec)" stroke-width="2" stroke-dasharray="5 6" opacity=".7"/>'+
+  '<path d="'+wave(x0,x1,cy,R,Math.sin,1)+'" fill="none" stroke="var(--acc)" stroke-width="3" stroke-linecap="round"/>';
+  [[1,'π/2'],[2,'π'],[3,'3π/2'],[4,'2π']].forEach(function(t){var x=x0+(x1-x0)*t[0]/4;s+='<line x1="'+x+'" y1="96" x2="'+x+'" y2="104" stroke="var(--mut)" stroke-width="1.5"/><text x="'+x+'" y="120" text-anchor="middle">'+t[1]+'</text>'});
+  s+='<text x="'+(x0+24)+'" y="24" style="fill:var(--acc);font-weight:700">y = sin x</text><text x="'+(x0+170)+'" y="24" style="fill:var(--sec);font-weight:700">y = cos x</text>'+
+  '<text x="106" y="22">1</text><text x="106" y="186">−1</text>'+
+  '<path id="hArc" fill="none" stroke="var(--sec)" stroke-width="2.5"/>'+
+  '<line id="hCos" stroke="var(--sec)" stroke-width="4" stroke-linecap="round"/>'+
+  '<line id="hSin" stroke="var(--acc)" stroke-width="4" stroke-linecap="round"/>'+
+  '<line id="hRad" x1="100" y1="100" stroke="var(--ink)" stroke-width="2"/>'+
+  '<line id="hLink" stroke="var(--mut)" stroke-width="1.5" stroke-dasharray="3 5"/>'+
+  '<circle id="hP" r="6" fill="var(--acc)"/><circle id="hW" r="6" fill="var(--acc)"/><text id="hT" style="fill:var(--ink);font-weight:700"></text></svg>';
+  return s;
+}
+function heroSet(a){
+  var cx=100,cy=100,R=72,x0=214,x1=524,px=cx+R*Math.cos(a),py=cy-R*Math.sin(a),wx=x0+(x1-x0)*a/(2*Math.PI);
+  function at(id,o){var e=document.getElementById(id);if(!e)return false;for(var k in o)e.setAttribute(k,o[k]);return true}
+  if(!at('hP',{cx:px,cy:py}))return false;
+  at('hRad',{x2:px,y2:py});at('hCos',{x1:cx,y1:cy,x2:px,y2:cy});at('hSin',{x1:px,y1:cy,x2:px,y2:py});
+  at('hLink',{x1:px,y1:py,x2:wx,y2:py});at('hW',{cx:wx,cy:py});
+  var r=22,ax=cx+r*Math.cos(a),ay=cy-r*Math.sin(a);
+  at('hArc',{d:'M'+(cx+r)+' '+cy+' A'+r+' '+r+' 0 '+(a>Math.PI?1:0)+' 0 '+f(ax)+' '+f(ay)});
+  var t=document.getElementById('hT');t.setAttribute('x',cx+30*Math.cos(a/2)-4);t.setAttribute('y',cy-30*Math.sin(a/2)+5);t.textContent='x';
+  return true;
+}
+function heroAnim(){
+  cancelAnimationFrame(raf);var start=null,a0=Math.PI/3;heroSet(a0);if(RM)return;
+  function step(ts){if(start===null)start=ts;var a=(a0+(ts-start)/2600)%(2*Math.PI);if(heroSet(a))raf=requestAnimationFrame(step)}
+  raf=requestAnimationFrame(step);
+}
+function stars(n){
+  var s='<svg width="180" height="64" viewBox="0 0 180 64" aria-label="'+n+' жұлдыз" role="img">';
+  for(var j=0;j<3;j++){var cx=30+j*60,cy=j==1?30:36,R=j==1?26:21,p='';
+    for(var i=0;i<10;i++){var r=i%2?R*.45:R,a=-Math.PI/2+i*Math.PI/5;p+=f(cx+r*Math.cos(a))+','+f(cy+r*Math.sin(a))+' '}
+    s+='<polygon points="'+p+'" fill="'+(j<n?'var(--sec)':'var(--soft)')+'" stroke="'+(j<n?'var(--acc)':'var(--line)')+'" stroke-width="2.5" stroke-linejoin="round"/>'}
+  return s+'</svg>';
+}
+
+/* ---------- экрандар ---------- */
+function home(){
+  var h='<section class="hero"><h1>Тригонометриялық теңдеулер</h1><p class="mut">5 деңгей, әрқайсысында 8 есеп. Теңдеуді дәптерге шешіп, дұрыс жауапты таңда. Әр жауаптан кейін шешу жолы шығады.</p>'+heroSvg()+'</section><div class="lv">';
+  for(var k in LEVELS){var b=getBest(k);h+='<button data-lv="'+k+'"><span class="ic">'+icon(k)+'</span><b>'+k+'-деңгей. '+LEVELS[k].name+'</b><span class="d">'+LEVELS[k].desc+'</span><em><span class="dots">'+DIFF[k]+'</span><br>'+(b?'Рекорд: '+b+'/8':'—')+'</em></button>'}
+  h+='</div><p class="note">Жауаптарда n — кез келген бүтін сан (n ∈ Z). Бірнеше түбір сериясы «;» белгісімен бөлінген.</p>';
+  app.innerHTML=h;
+  app.querySelectorAll('[data-lv]').forEach(function(b){b.onclick=function(){start(b.getAttribute('data-lv'))}});
+  heroAnim();
+}
+function start(k){cancelAnimationFrame(raf);st={lv:k,qs:shuffle(LEVELS[k].qs),i:0,score:0,streak:0,best:0,wrong:[]};show()}
+function show(){
+  var q=st.qs[st.i],n=st.qs.length;
+  var opts=shuffle([q[1]].concat(q[2]));
+  var parts=q[0].split(",  ");
+  var h='<div class="top"><span class="who"><span class="ic">'+icon(st.lv,26)+'</span>'+st.lv+'-деңгей · '+(st.i+1)+' / '+n+'</span><span>Ұпай: '+st.score+' · Қатар: '+st.streak+'</span></div>'+
+  '<div class="bar"><i style="width:'+(st.i/n*100)+'%"></i></div><div class="card"><p class="mut" style="margin-bottom:6px">Теңдеуді шеш:</p><div class="q">'+parts[0]+(parts[1]?'<small>'+parts[1]+' аралығындағы түбірлер</small>':'')+'</div><div class="opts">';
+  opts.forEach(function(o,j){h+='<button class="opt" id="opt'+j+'" data-j="'+j+'"><span class="k">'+'ABCD'[j]+'</span><span>'+lbl(o)+'</span></button>'});
+  h+='</div><div id="fb" aria-live="polite"></div></div>';
+  app.innerHTML=h;
+  app.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){answer(b,opts,q)}});
+}
+function answer(btn,opts,q){
+  var picked=opts[+btn.getAttribute('data-j')],right=picked===q[1];
+  app.querySelectorAll('.opt').forEach(function(b){
+    b.disabled=true;
+    var v=opts[+b.getAttribute('data-j')];
+    if(v===q[1])b.classList.add('ok');else if(b===btn)b.classList.add('bad');
+  });
+  if(right){st.score++;st.streak++;if(st.streak>st.best)st.best=st.streak}else{st.streak=0;st.wrong.push(q)}
+  var last=st.i===st.qs.length-1;
+  document.getElementById('fb').innerHTML='<div class="fb'+(right?' r':'')+'"><strong>'+(right?'Дұрыс!':'Дұрыс емес. Жауабы: '+lbl(q[1]))+'</strong>'+q[3]+'</div>'+
+  '<button class="next" id="nx">'+(last?'Нәтижені көру':'Келесі есеп')+'</button>';
+  var nx=document.getElementById('nx');nx.focus();
+  nx.onclick=function(){if(last)result();else{st.i++;show()}};
+}
+function result(){
+  var n=st.qs.length,p=st.score/n,lv=+st.lv;
+  setBest(lv,st.score);
+  var ns=p===1?3:p>=0.75?2:p>=0.5?1:0;
+  var msg=p===1?'Тамаша! Барлығы дұрыс.':p>=0.75?'Жақсы нәтиже! Төмендегі қателерді қарап шық.':p>=0.5?'Жаман емес. Формулаларды тағы бір қайталайық.':'Лекцияны қайта қарап, тағы бір рет көр.';
+  var h='<h1>Нәтиже · '+lv+'-деңгей</h1><div class="card res">'+stars(ns)+'<div class="big">'+st.score+' / '+n+'</div><p>'+msg+'</p><p class="mut" style="margin:0">Ең ұзақ дұрыс қатар: '+st.best+'</p></div>';
+  if(st.wrong.length){
+    h+='<h2>Қатемен жұмыс</h2><div class="miss">';
+    st.wrong.forEach(function(q){h+='<div><b>'+q[0]+'</b>'+lbl(q[1])+'<br><span class="mut">'+q[3]+'</span></div>'});
+    h+='</div>';
+  }
+  h+='<div class="row"><button id="again" class="next" style="margin-top:0">Қайта шешу</button>'+
+  (p>=0.75&&LEVELS[lv+1]?'<button id="up" class="next" style="margin-top:0">'+(lv+1)+'-деңгейге өту</button>':'')+
+  '<button id="menu">Деңгей таңдау</button></div>';
+  app.innerHTML=h;
+  document.getElementById('again').onclick=function(){start(st.lv)};
+  var up=document.getElementById('up');if(up)up.onclick=function(){start(String(lv+1))};
+  document.getElementById('menu').onclick=home;
+}
+home();
+</script>
+</body>
+</html>
